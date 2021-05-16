@@ -7,6 +7,7 @@ import * as helmet from "helmet";
 import * as hpp from "hpp";
 import * as morgan from "morgan";
 import * as passport from "passport";
+import { sequelize } from "./models";
 
 const app = express();
 const prod: boolean = process.env.NODE_ENV === "production";
@@ -51,6 +52,15 @@ app.use(
 );
 
 app.set("port", prod ? process.env.PORT : 3065);
+// force 옵션 true로 하면 서버 재시작 할 때 마다 테이블 초기화 함. 테이블 새로 만들거나 컬럼 바꿔야 할 때 사용. 배포 시 true 안하도록 주의!!! 회원 정보 다 날아감
+sequelize
+  .sync({ force: false })
+  .then(() => {
+    console.log("데이터베이스 연결 성공");
+  })
+  .catch((err: Error) => {
+    console.error(err);
+  });
 app.get("/", (req, res, next) => {
   res.send("react nodebird 백엔드 정상 작동");
 });
