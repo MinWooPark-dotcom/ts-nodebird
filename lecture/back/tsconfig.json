@@ -1,0 +1,8 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "lib": ["es2015", "es2016", "es2017", "es2018", "es2019", "es2020"],
+    "moduleResolution": "node"
+    // "esModuleInterop": true // export default가 아닌 파일도 '* as'없이 사용 가능하게 해 주는 옵션
+  }
+}
