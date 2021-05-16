@@ -46,6 +46,7 @@ app.use(
       secure: false, // https -> true
       domain: prod ? ".nodebird.com" : undefined,
     },
+    name: "rnbck",
   })
 );
 
