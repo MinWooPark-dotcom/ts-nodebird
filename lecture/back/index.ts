@@ -1,12 +1,13 @@
 import * as express from "express";
 
 const app = express();
-const prod = process.env.NODE_ENV === "production";
+const prod: boolean = process.env.NODE_ENV === "production";
 
-app.get("/", (req, res) => {
+app.set("port", prod ? process.env.PORT : 3065);
+app.get("/", (req, res, next) => {
   res.send("react nodebird 백엔드 정상 작동");
 });
 
-app.listen(prod ? process.env.PORT : 3065, () => {
-  console.log(`server is running on ${process.env.PORT}`);
+app.listen(app.get("port"), () => {
+  console.log(`server is running on ${app.get("port")}`);
 });
