@@ -3,7 +3,7 @@ import { dbType } from "./index";
 import { sequelize } from "./sequelize";
 
 class Comment extends Model {
-  public readonly id!: number;
+  public readonly id!: number; // id는 무조건 존재한다는 의미로 '!'
   public content!: string;
   public readonly createdAt!: Date;
   public readonly updatedAt!: Date;
